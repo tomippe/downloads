@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Downloads</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;">
+    <symbol id="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>
+    </symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="5 3 19 12 5 21 5 3"/>
+    </symbol>
+    <symbol id="icon-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+    </symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>
+    </symbol>
+    <symbol id="icon-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+    </symbol>
+    <symbol id="icon-speedometer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><path d="M12 12 12 4"/>
+    </symbol>
+  </svg>
+
+  <div class="toolbar">
+    <input type="text" class="search" data-i18n-placeholder="search" id="searchInput">
+    <div class="toolbar-buttons">
+      <button type="button" class="icon-btn" id="btnPauseResume" data-i18n-title="pauseResume">
+        <svg class="icon" width="16" height="16"><use href="#icon-pause"></use></svg>
+      </button>
+      <button type="button" class="icon-btn" id="btnRefresh" data-i18n-title="refresh">
+        <svg class="icon" width="16" height="16"><use href="#icon-refresh"></use></svg>
+      </button>
+      <button type="button" class="icon-btn" id="btnClear" data-i18n-title="clearList">
+        <svg class="icon" width="16" height="16"><use href="#icon-trash"></use></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="sort-row">
+    <label for="sortSelect" data-i18n="sortLabel"></label>
+    <select id="sortSelect">
+      <option value="newest" data-i18n="sortNewest"></option>
+      <option value="oldest" data-i18n="sortOldest"></option>
+      <option value="sizeDesc" data-i18n="sortSizeDesc"></option>
+      <option value="sizeAsc" data-i18n="sortSizeAsc"></option>
+      <option value="nameAsc" data-i18n="sortNameAsc"></option>
+      <option value="nameDesc" data-i18n="sortNameDesc"></option>
+      <option value="urlAsc" data-i18n="sortUrlAsc"></option>
+      <option value="urlDesc" data-i18n="sortUrlDesc"></option>
+      <option value="type" data-i18n="sortType"></option>
+    </select>
+  </div>
+
+  <div class="list-wrap">
+    <ul class="download-list" id="downloadList"></ul>
+  </div>
+
+  <section class="detail hidden" id="detailSection">
+    <h2 class="detail-filename" id="detailFilename">—</h2>
+    <p class="detail-url" id="detailUrl">—</p>
+    <p class="detail-path" id="detailPath">—</p>
+    <p class="detail-time"><span class="detail-label" data-i18n="startLabel"></span><span id="detailStart">—</span></p>
+    <p class="detail-time"><span class="detail-label" data-i18n="endLabel"></span><span id="detailEnd" class="detail-value-bold">—</span></p>
+    <p class="detail-size" id="detailSize">—</p>
+    <p class="detail-speed"><svg class="detail-speed-icon" width="14" height="14" aria-hidden="true"><use href="#icon-speedometer"></use></svg><span id="detailSpeed">—</span></p>
+    <div class="detail-actions">
+      <button type="button" class="btn btn-resume" id="btnResume" data-i18n="btnResume"></button>
+      <button type="button" class="btn btn-finder" id="btnFinder" data-i18n="btnShowInFolder"></button>
+    </div>
+  </section>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>
