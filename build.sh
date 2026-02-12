@@ -13,6 +13,17 @@ ZIP_NAME="${APP_NAME}.zip"
 source "$SCRIPT_DIR/../build-common/version.sh"
 source "$SCRIPT_DIR/../build-common/git-commit.sh"
 
+# ===== オプション解析 =====
+COMMIT_MSG=""
+NO_VERUP=false
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -cm) shift; COMMIT_MSG="$1" ;;
+        -noverup) NO_VERUP=true ;;
+    esac
+    shift || true
+done
+
 # バージョン読み込み
 VERSION=$(version_read)
 
@@ -41,9 +52,11 @@ echo "✅ ${ZIP_NAME} (v${VERSION}) を作成しました"
 echo "📦 場所: $(pwd)/${ZIP_NAME}"
 
 # 次回用バージョン保存
-echo ""
-echo "📝 次回用バージョンを更新しています..."
-version_save_next "$VERSION"
+if ! $NO_VERUP; then
+    echo ""
+    echo "📝 次回用バージョンを更新しています..."
+    version_save_next "$VERSION"
+fi
 
 # Git コミット
-git_commit_build "$VERSION"
+git_commit_build "$VERSION" "$COMMIT_MSG"
