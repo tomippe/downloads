@@ -11,6 +11,7 @@ ZIP_NAME="${APP_NAME}.zip"
 
 # 共通スクリプト読み込み
 source "$SCRIPT_DIR/../build-common/version.sh"
+source "$SCRIPT_DIR/../build-common/git-commit.sh"
 
 # バージョン読み込み
 VERSION=$(version_read)
@@ -43,3 +44,6 @@ echo "📦 場所: $(pwd)/${ZIP_NAME}"
 echo ""
 echo "📝 次回用バージョンを更新しています..."
 version_save_next "$VERSION"
+
+# Git コミット
+git_commit_build "$VERSION"
