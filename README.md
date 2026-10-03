@@ -28,3 +28,13 @@ Chrome 起動時に「パネルを開く」タブが自動で開きます。ボ�
 ./release.sh          # パッチバージョンアップ + zip 作成
 ./release.sh minor    # マイナーバージョンアップ
 ```
+
+### Chrome Web Store API でアップロード
+
+1. `../build-common/chrome-webstore-env.example` を参考に `~/.chrome-webstore-env` を用意する。
+2. `.env` の `CHROME_WEBSTORE_ITEM_ID` にストアの拡張 ID（32 文字）を入れる（未設定のときは `./build.sh` でもアップロードはスキップされる）。
+3. **`./build.sh` のたびに既定でアップロードを試みる**（止めたいときは `-noupload`）。単体では `./upload-to-chrome-webstore.sh`（任意で `--publish`）。ZIP は `CHROME_WEBSTORE_ZIP`（既定: `download-sidepanel.zip`）を使用する。
+
+## ライセンス
+
+[MIT License](LICENSE) — 利用・改変・再配布を自由に行えます（著作権表示とライセンス文の保持が条件です）。
